@@ -21,6 +21,9 @@ Events Data (Sample CSV)
         ↓
       Looker
 
+<img width="1240" height="697" alt="image" src="https://github.com/user-attachments/assets/4e590265-00d6-462d-9492-9a5986c0c725" />
+
+
 Tools:
 - BigQuery
 - Cloud Storage
