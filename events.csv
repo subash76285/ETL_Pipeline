@@ -1,0 +1,11 @@
+event_id,user_id,event_name,event_timestamp,event_date,source,channel
+e1,u1,page_view,01-12-2024 10:00,20241201,google,Organic Search
+e2,u1,page_view,03-12-2024 09:15,20241203,facebook,Paid Social
+e3,u1,purchase,05-12-2024 18:30,20241205,direct,Direct
+e4,u2,page_view,02-12-2024 11:20,20241202,google,Paid Search
+e5,u2,page_view,04-12-2024 14:10,20241204,email,Email
+e6,u2,purchase,06-12-2024 16:45,20241206,email,Email
+e7,u3,page_view,03-12-2024 08:00,20241203,google,Organic Search
+e8,u3,page_view,10-12-2024 12:30,20241210,google,Organic Search
+e9,u4,page_view,04-12-2024 09:00,20241204,facebook,Paid Social
+e10,u4,purchase,04-12-2024 09:30,20241204,facebook,Paid Social
