@@ -12,6 +12,7 @@ insert into curatedds.curated_events select user_id, last_value(channel) over (p
 
 select * from `discovery.first_events` limit 5;
 
-select * from `discovery.first_events` limit 5;
+select * from `discovery.last_events` limit 5;
 
 select current_timestamp, "Discovery Load completed Successfully";
+
