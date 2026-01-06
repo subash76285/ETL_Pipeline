@@ -1,18 +1,18 @@
 create schema if not exists discoveryds;
 
-create or replace table if not exists discoveryds.first_events(event_id INT64, user_id INT64, event_name string, event_timestamp timestamp, event_date date, source string, channel string) partition by event_date cluster by event_id;
-
-insert into curatedds.curated_events select user_id, first_value(channel) over (partition by user_id order by event_ts) as first_click_channel from curatedds.curated_events qualify event_name = 'purchase';
-
-
-create or replace table if not exists discoveryds.last_events(event_id INT64, user_id INT64, event_name string, event_timestamp timestamp, event_date date, source string, channel string) partition by event_date cluster by event_id;
-
-insert into curatedds.curated_events select user_id, last_value(channel) over (partition by user_id order by event_ts rows between unbounded preceding and unbounded following) as last_click_channel from curatedds.curated_events qualify event_name = 'purchase';
+create or replace table discoveryds.first_event as select distinct user_pseudo_id, first_value(source) over (partition by user_pseudo_id order by event_time) as first_click_source,
+  first_value(medium) over (partition by user_pseudo_id order by event_time) as first_click_medium from curatedds.curated_events_final;
 
 
-select * from `discovery.first_events` limit 5;
+create or replace table discoveryds.last_event as select distinct user_pseudo_id,
+  last_value(source) over (partition by user_pseudo_id order by event_time rows between unbounded preceding and unbounded following) as last_click_source,
+  last_value(medium) over (partition by user_pseudo_id order by event_time rows between unbounded preceding and unbounded following) as last_click_medium from curatedds.curated_events_final;
 
-select * from `discovery.last_events` limit 5;
+
+select * from `discovery.first_event` limit 5;
+
+select * from `discovery.last_event` limit 5;
 
 select current_timestamp, "Discovery Load completed Successfully";
+
 
